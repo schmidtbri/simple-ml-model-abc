@@ -11,7 +11,7 @@ if os.path.dirname(os.path.dirname(os.path.abspath(__file__))) not in sys.path:
 from iris_predict import IrisSVCModel
 
 
-class TestMLModel(unittest.TestCase):
+class TestIrisSVCModel(unittest.TestCase):
     def test1(self):
         """ testing the __init__() method """
         # arrange, act

@@ -20,3 +20,9 @@ class MLModel(ABC):
     @abstractmethod
     def predict(self, data):
         self.input_schema.validate(data)
+
+
+class MLModelException(Exception):
+    """ Exception type used to raise exceptions within MLModel derived classes """
+    def __init__(self,*args,**kwargs):
+        Exception.__init__(self, *args, **kwargs)
