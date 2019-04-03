@@ -3,6 +3,7 @@ import sys
 import unittest
 from sklearn import svm
 from schema import SchemaError
+import json
 
 # this adds the project root to the PYTHONPATH if its not already there, it makes it easier to run the unit tests
 if os.path.dirname(os.path.dirname(os.path.abspath(__file__))) not in sys.path:
@@ -120,6 +121,18 @@ class TestIrisSVCModel(unittest.TestCase):
         self.assertTrue(type(prediction) is dict)
         self.assertTrue(prediction["species"] == 'setosa')
         self.assertFalse(exception_raised)
+
+    def test8(self):
+        """ testing JSON schema generation """
+        # arrange
+        model = IrisSVCModel()
+
+        # act
+        json_schema = json.dumps(model.input_schema.json_schema("https://example.com/my-schema.json"))
+
+        # assert
+        print(json_schema)
+        self.assertTrue(type(json_schema) is str)
 
 
 if __name__ == '__main__':
