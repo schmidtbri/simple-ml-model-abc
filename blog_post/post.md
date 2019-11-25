@@ -179,21 +179,20 @@ class MLModel(ABC):
     @property
     @abstractmethod
     def input_schema(self):
-    raise NotImplementedError()
+        raise NotImplementedError()
     
     @property
     @abstractmethod
     def output_schema(self):
-    raise NotImplementedError()
+        raise NotImplementedError()
     
     @abstractmethod
     def __init__(self):
-    raise NotImplementedError()
+        raise NotImplementedError()
     
     @abstractmethod
     def predict(self, data):
-    self.input_schema.validate(data)
-
+        self.input_schema.validate(data)
 ```
 
 The code looks very similar to Uber's and Seldon Core's approach. The
@@ -241,7 +240,7 @@ model training script:
 ```python
 iris = datasets.load_iris()
 svm_model = svm.SVC(gamma=0.001, C=100.0)
-svm_model.fit(iris.data\[:-1\], iris.target\[:-1\])
+svm_model.fit(iris.data[:-1], iris.target[:-1])
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 file = open(os.path.join(dirpath, "model_files", "svc_model.pickle"), 'wb')
